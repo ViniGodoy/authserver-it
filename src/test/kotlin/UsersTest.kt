@@ -9,9 +9,9 @@ import io.restassured.module.kotlin.extensions.Then
 import io.restassured.module.kotlin.extensions.When
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
-import io.restassured.http.Header
 import org.hamcrest.Matchers.*
 import io.restassured.module.jsv.JsonSchemaValidator.*
+import io.restassured.specification.RequestSpecification
 import org.apache.http.HttpStatus.SC_OK
 
 class UsersTest {
@@ -54,7 +54,8 @@ class UsersTest {
             }
         }
 
-        fun jwt() = Header("Authorization", "Bearer $token")
+        fun RequestSpecification.loggedAsAdmin(): RequestSpecification =
+            header("Authorization", "Bearer $token")
     }
 
     @Test
@@ -73,7 +74,7 @@ class UsersTest {
     fun `GET me should return the logged user`() {
         Given {
             spec(authServerSpec)
-            header(jwt())
+            loggedAsAdmin()
         } When {
             get("/me")
         } Then {
