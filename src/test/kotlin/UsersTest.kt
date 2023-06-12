@@ -37,12 +37,10 @@ class UsersTest {
         fun setup() {
             Given {
                 spec(authServerSpec)
-                body("""
-                    {
-                        "email": "admin@authserver.com",
-                        "password": "admin"
-                    }"""
-                )
+                body(mapOf(
+                    "email" to "admin@authserver.com",
+                    "password" to "admin"
+                ))
             } When {
                 post("/login")
             } Then {
