@@ -5,5 +5,7 @@
     "id": {"type":  "integer", "minimum": 1},
     "name": {"type":  "string"},
     "email": {"type": "string", "format":  "email"}
-  }
+  },
+  "required": ["id", "name", "email"],
+  "additionalProperties": false
 }

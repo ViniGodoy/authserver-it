@@ -4,5 +4,7 @@
   "properties": {
     "token": {"type": "string", "pattern": "^[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+\\.[A-Za-z0-9-_]+$"},
     "user": {"$ref":  "user.json"}
-  }
+  },
+  "required": ["token", "user"],
+  "additionalProperties": false
 }
